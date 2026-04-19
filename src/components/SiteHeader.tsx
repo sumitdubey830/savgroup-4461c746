@@ -1,0 +1,78 @@
+import { Link } from "@tanstack/react-router";
+import { useState } from "react";
+import { Menu, X, Phone } from "lucide-react";
+
+const links = [
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
+  { to: "/services", label: "Services" },
+  { to: "/contact", label: "Contact" },
+] as const;
+
+export function SiteHeader() {
+  const [open, setOpen] = useState(false);
+  return (
+    <header className="sticky top-0 z-50 backdrop-blur-md bg-background/85 border-b border-border">
+      <div className="max-w-7xl mx-auto px-6 h-18 py-4 flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-2 group">
+          <div className="w-10 h-10 rounded-md bg-navy flex items-center justify-center shadow-elegant">
+            <span className="text-gold font-display font-bold text-lg">S</span>
+          </div>
+          <div className="leading-tight">
+            <div className="font-display font-bold text-navy text-lg">Sav Group</div>
+            <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Workforce Solutions</div>
+          </div>
+        </Link>
+
+        <nav className="hidden md:flex items-center gap-8">
+          {links.map((l) => (
+            <Link
+              key={l.to}
+              to={l.to}
+              className="text-sm font-medium text-foreground/80 hover:text-navy transition-colors"
+              activeProps={{ className: "text-navy font-semibold" }}
+              activeOptions={{ exact: l.to === "/" }}
+            >
+              {l.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="hidden md:flex items-center gap-3">
+          <a href="tel:+79228756002" className="text-sm font-medium text-navy flex items-center gap-2">
+            <Phone className="w-4 h-4" /> +7 922 875 6002
+          </a>
+          <Link
+            to="/contact"
+            className="bg-gradient-gold text-gold-foreground px-5 py-2.5 rounded-md text-sm font-semibold shadow-gold hover:translate-y-[-1px] transition-transform"
+          >
+            Request Workers
+          </Link>
+        </div>
+
+        <button className="md:hidden text-navy" onClick={() => setOpen(!open)} aria-label="Menu">
+          {open ? <X /> : <Menu />}
+        </button>
+      </div>
+
+      {open && (
+        <div className="md:hidden border-t border-border bg-background animate-fade-up">
+          <div className="px-6 py-4 flex flex-col gap-3">
+            {links.map((l) => (
+              <Link key={l.to} to={l.to} onClick={() => setOpen(false)} className="text-foreground/80 py-2">
+                {l.label}
+              </Link>
+            ))}
+            <Link
+              to="/contact"
+              onClick={() => setOpen(false)}
+              className="bg-gradient-gold text-gold-foreground px-5 py-3 rounded-md text-center font-semibold mt-2"
+            >
+              Request Workers
+            </Link>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
