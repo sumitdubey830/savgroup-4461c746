@@ -2,17 +2,19 @@ import { useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Send } from "lucide-react";
-
-const schema = z.object({
-  name: z.string().trim().min(2, "Name is required").max(100),
-  company: z.string().trim().min(1, "Company is required").max(150),
-  email: z.string().trim().email("Valid email required").max(255),
-  phone: z.string().trim().min(5, "Phone is required").max(30),
-  requirement: z.string().trim().min(10, "Please describe your requirement").max(1000),
-});
+import { useI18n } from "@/lib/i18n";
 
 export function ContactForm() {
+  const { t } = useI18n();
   const [submitting, setSubmitting] = useState(false);
+
+  const schema = z.object({
+    name: z.string().trim().min(2, t("cp.f.err.name")).max(100),
+    company: z.string().trim().min(1, t("cp.f.err.company")).max(150),
+    email: z.string().trim().email(t("cp.f.err.email")).max(255),
+    phone: z.string().trim().min(5, t("cp.f.err.phone")).max(30),
+    requirement: z.string().trim().min(10, t("cp.f.err.req")).max(1000),
+  });
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,7 +26,7 @@ export function ContactForm() {
     }
     setSubmitting(true);
     setTimeout(() => {
-      toast.success("Request received. Our team will contact you within 24 hours.");
+      toast.success(t("cp.f.success"));
       (e.target as HTMLFormElement).reset();
       setSubmitting(false);
     }, 700);
@@ -33,21 +35,21 @@ export function ContactForm() {
   return (
     <form onSubmit={onSubmit} className="space-y-5">
       <div className="grid sm:grid-cols-2 gap-5">
-        <Field name="name" label="Your Name" placeholder="Full name" />
-        <Field name="company" label="Company" placeholder="Company name" />
+        <Field name="name" label={t("cp.f.name")} placeholder={t("cp.f.name.ph")} />
+        <Field name="company" label={t("cp.f.company")} placeholder={t("cp.f.company.ph")} />
       </div>
       <div className="grid sm:grid-cols-2 gap-5">
-        <Field name="email" label="Email" type="email" placeholder="you@company.com" />
-        <Field name="phone" label="Phone" type="tel" placeholder="+7 ..." />
+        <Field name="email" label={t("cp.f.email")} type="email" placeholder={t("cp.f.email.ph")} />
+        <Field name="phone" label={t("cp.f.phone")} type="tel" placeholder={t("cp.f.phone.ph")} />
       </div>
       <div>
-        <label className="block text-sm font-medium text-navy mb-2">Requirement</label>
+        <label className="block text-sm font-medium text-navy mb-2">{t("cp.f.req")}</label>
         <textarea
           name="requirement"
           rows={5}
           required
           maxLength={1000}
-          placeholder="Tell us how many workers, type, location, duration..."
+          placeholder={t("cp.f.req.ph")}
           className="w-full px-4 py-3 rounded-md border border-border bg-background focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition-all resize-none"
         />
       </div>
@@ -56,7 +58,7 @@ export function ContactForm() {
         disabled={submitting}
         className="w-full bg-navy text-primary-foreground hover:bg-navy-light px-6 py-4 rounded-md font-semibold flex items-center justify-center gap-2 transition-colors shadow-elegant disabled:opacity-60"
       >
-        {submitting ? "Sending..." : <>Submit Request <Send className="w-4 h-4" /></>}
+        {submitting ? t("cp.f.sending") : <>{t("cp.f.submit")} <Send className="w-4 h-4" /></>}
       </button>
     </form>
   );

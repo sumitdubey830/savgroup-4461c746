@@ -1,54 +1,26 @@
 import { useEffect, useState } from "react";
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 const testimonials = [
-  {
-    name: "Ivan Petrov",
-    role: "Project Manager",
-    company: "Construction Company, Moscow",
-    text: "Sav Group provided reliable workers for our construction project. Very satisfied with their discipline and work ethic. The team is professional from first contact to deployment.",
-  },
-  {
-    name: "Sergey Ivanov",
-    role: "Operations Director",
-    company: "Logistics Firm, St. Petersburg",
-    text: "We needed 50 loaders on short notice and Sav Group delivered within three weeks. Documentation was handled flawlessly. Highly recommended.",
-  },
-  {
-    name: "Dmitry Smirnov",
-    role: "CEO",
-    company: "Industrial Manufacturing, Kazan",
-    text: "Working with Sav Group for over two years. Their welders and fitters are skilled and dependable. A true partner for our workforce needs.",
-  },
-  {
-    name: "Alexei Volkov",
-    role: "HR Head",
-    company: "Warehouse & Distribution, Yekaterinburg",
-    text: "Cost-effective and transparent. The replacement guarantee gives us peace of mind. Indian workers we received are hardworking and respectful.",
-  },
-  {
-    name: "Mikhail Sokolov",
-    role: "Site Engineer",
-    company: "Infrastructure Group, Novosibirsk",
-    text: "Excellent communication. Sav Group understood our exact requirement for machine operators and shortlisted perfect candidates. Onboarding was smooth.",
-  },
-  {
-    name: "Nikolai Kozlov",
-    role: "Procurement Manager",
-    company: "Heavy Industries, Samara",
-    text: "Reliable manpower partner. Their workers handle long shifts well and integrate quickly into our operations. Will continue working with Sav Group.",
-  },
-];
+  { name: "Ivan Petrov", roleKey: "tst.1.role", coKey: "tst.1.co", textKey: "tst.1.text" },
+  { name: "Sergey Ivanov", roleKey: "tst.2.role", coKey: "tst.2.co", textKey: "tst.2.text" },
+  { name: "Dmitry Smirnov", roleKey: "tst.3.role", coKey: "tst.3.co", textKey: "tst.3.text" },
+  { name: "Alexei Volkov", roleKey: "tst.4.role", coKey: "tst.4.co", textKey: "tst.4.text" },
+  { name: "Mikhail Sokolov", roleKey: "tst.5.role", coKey: "tst.5.co", textKey: "tst.5.text" },
+  { name: "Nikolai Kozlov", roleKey: "tst.6.role", coKey: "tst.6.co", textKey: "tst.6.text" },
+] as const;
 
 export function Testimonials() {
+  const { t } = useI18n();
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const t = setInterval(() => setIndex((i) => (i + 1) % testimonials.length), 5000);
-    return () => clearInterval(t);
+    const id = setInterval(() => setIndex((i) => (i + 1) % testimonials.length), 5000);
+    return () => clearInterval(id);
   }, []);
 
-  const t = testimonials[index];
+  const item = testimonials[index];
 
   return (
     <section className="py-24 bg-navy text-primary-foreground relative overflow-hidden">
@@ -58,11 +30,11 @@ export function Testimonials() {
       }} />
       <div className="max-w-5xl mx-auto px-6 relative">
         <div className="text-center mb-14">
-          <span className="text-gold text-sm uppercase tracking-[0.3em] font-semibold">Testimonials</span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-3">Trusted by Russian Companies</h2>
+          <span className="text-gold text-sm uppercase tracking-[0.3em] font-semibold">{t("tst.eyebrow")}</span>
+          <h2 className="text-4xl md:text-5xl font-bold mt-3">{t("tst.title")}</h2>
         </div>
 
-        <div className="bg-navy-light/60 backdrop-blur border border-primary-foreground/10 rounded-2xl p-10 md:p-14 shadow-elegant relative">
+        <div className="bg-navy-light/60 backdrop-blur border border-primary-foreground/10 rounded-2xl p-8 md:p-14 shadow-elegant relative">
           <Quote className="absolute top-8 right-8 w-16 h-16 text-gold/20" />
           <div key={index} className="animate-fade-up">
             <div className="flex gap-1 mb-6">
@@ -70,13 +42,13 @@ export function Testimonials() {
                 <Star key={i} className="w-5 h-5 fill-gold text-gold" />
               ))}
             </div>
-            <p className="text-xl md:text-2xl leading-relaxed font-display italic text-primary-foreground/90 mb-8">
-              "{t.text}"
+            <p className="text-lg md:text-2xl leading-relaxed font-display italic text-primary-foreground/90 mb-8">
+              "{t(item.textKey)}"
             </p>
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div>
-                <div className="font-semibold text-gold">{t.name}</div>
-                <div className="text-sm text-primary-foreground/60">{t.role} · {t.company}</div>
+                <div className="font-semibold text-gold">{item.name}</div>
+                <div className="text-sm text-primary-foreground/60">{t(item.roleKey)} · {t(item.coKey)}</div>
               </div>
               <div className="flex items-center gap-2">
                 <button

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Phone, Mail, MessageCircle, User, MapPin } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -15,37 +16,34 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Contact() {
+  const { t } = useI18n();
   return (
     <>
       <section className="py-20 bg-navy text-primary-foreground">
         <div className="max-w-7xl mx-auto px-6">
-          <span className="text-gold text-sm uppercase tracking-[0.3em] font-semibold">Get in Touch</span>
-          <h1 className="text-5xl md:text-6xl font-bold mt-3 max-w-3xl">Request Workers</h1>
-          <p className="text-primary-foreground/70 text-lg mt-6 max-w-2xl">
-            Tell us your requirement and our team will respond within 24 hours.
-          </p>
+          <span className="text-gold text-sm uppercase tracking-[0.3em] font-semibold">{t("cp.eyebrow")}</span>
+          <h1 className="text-5xl md:text-6xl font-bold mt-3 max-w-3xl">{t("cp.title")}</h1>
+          <p className="text-primary-foreground/70 text-lg mt-6 max-w-2xl">{t("cp.subtitle")}</p>
         </div>
       </section>
 
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-5 gap-12">
-          <div className="lg:col-span-2 space-y-6">
-            <h2 className="text-2xl font-bold text-navy mb-2">Direct Contact</h2>
-            <p className="text-muted-foreground mb-8">
-              Reach out by phone, WhatsApp, or email — whichever works best for you.
-            </p>
+          <div className="lg:col-span-2 space-y-4">
+            <h2 className="text-2xl font-bold text-navy mb-2">{t("cp.direct")}</h2>
+            <p className="text-muted-foreground mb-6">{t("cp.directDesc")}</p>
 
-            <ContactItem icon={User} label="Contact Person" value="Ashish Dubey" />
-            <ContactItem icon={Phone} label="Phone" value="+7 922 875 6002" href="tel:+79228756002" />
-            <ContactItem icon={MessageCircle} label="WhatsApp" value="+7 922 875 6002" href="https://wa.me/79228756002" highlight />
-            <ContactItem icon={Mail} label="Email" value="savruswork@gmail.com" href="mailto:savruswork@gmail.com" />
-            <ContactItem icon={MapPin} label="Operations" value="India · Russia" />
+            <ContactItem icon={User} label={t("cp.person")} value="Ashish Dubey" />
+            <ContactItem icon={Phone} label={t("cp.phone")} value="+7 922 875 6002" href="tel:+79228756002" />
+            <ContactItem icon={MessageCircle} label={t("cp.whatsapp")} value="+7 922 875 6002" href="https://wa.me/79228756002" highlight />
+            <ContactItem icon={Mail} label={t("cp.email")} value="savruswork@gmail.com" href="mailto:savruswork@gmail.com" />
+            <ContactItem icon={MapPin} label={t("cp.ops")} value={t("cp.ops.value")} />
           </div>
 
           <div className="lg:col-span-3">
-            <div className="bg-background border border-border rounded-2xl p-8 md:p-10 shadow-elegant">
-              <h2 className="text-2xl font-bold text-navy mb-2">Send a Request</h2>
-              <p className="text-sm text-muted-foreground mb-8">All fields are required. We respond within 24 hours.</p>
+            <div className="bg-background border border-border rounded-2xl p-6 md:p-10 shadow-elegant">
+              <h2 className="text-2xl font-bold text-navy mb-2">{t("cp.form.title")}</h2>
+              <p className="text-sm text-muted-foreground mb-8">{t("cp.form.note")}</p>
               <ContactForm />
             </div>
           </div>
@@ -63,7 +61,7 @@ function ContactItem({ icon: Icon, label, value, href, highlight }: { icon: type
       </div>
       <div>
         <div className={`text-xs uppercase tracking-wider ${highlight ? "text-navy/70" : "text-muted-foreground"}`}>{label}</div>
-        <div className={`font-semibold mt-0.5 ${highlight ? "text-navy" : "text-navy"}`}>{value}</div>
+        <div className="font-semibold mt-0.5 text-navy">{value}</div>
       </div>
     </div>
   );
