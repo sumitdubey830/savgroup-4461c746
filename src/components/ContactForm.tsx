@@ -3,6 +3,7 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { Send } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
+import { supabase } from "@/integrations/supabase/client";
 
 export function ContactForm() {
   const { t } = useI18n();
@@ -16,20 +17,24 @@ export function ContactForm() {
     requirement: z.string().trim().min(10, t("cp.f.err.req")).max(1000),
   });
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.currentTarget));
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form));
     const parsed = schema.safeParse(data);
     if (!parsed.success) {
       toast.error(parsed.error.issues[0].message);
       return;
     }
     setSubmitting(true);
-    setTimeout(() => {
-      toast.success(t("cp.f.success"));
-      (e.target as HTMLFormElement).reset();
-      setSubmitting(false);
-    }, 700);
+    const { error } = await supabase.from("worker_requests").insert(parsed.data);
+    setSubmitting(false);
+    if (error) {
+      toast.error(t("cp.f.error") || "Something went wrong. Please try again.");
+      return;
+    }
+    toast.success(t("cp.f.success"));
+    form.reset();
   };
 
   return (
