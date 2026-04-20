@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { LanguageToggle } from "./LanguageToggle";
-import savLogo from "@/assets/sav-logo.jpg";
+import savLogo from "@/assets/sav-logo.png";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -18,12 +18,9 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-background/85 border-b border-border">
-      <div className="max-w-7xl mx-auto px-6 h-18 py-3 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-6 h-20 py-2 flex items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-3 group shrink-0">
-          <img src={savLogo} alt="Sav Group" className="h-12 w-auto object-contain" />
-          <div className="leading-tight hidden sm:block">
-            <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{t("nav.tagline")}</div>
-          </div>
+          <img src={savLogo} alt="Sav Group" className="h-16 md:h-20 w-auto object-contain" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">
