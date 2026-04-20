@@ -10,8 +10,22 @@ const en: Dict = {
   "nav.about": "About",
   "nav.services": "Services",
   "nav.contact": "Contact",
+  "nav.gallery": "Our Work",
   "nav.tagline": "Workforce Solutions",
   "nav.request": "Request Workers",
+
+  // Gallery
+  "gal.eyebrow": "Our Work in Action",
+  "gal.title": "Workers on the Ground",
+  "gal.subtitle": "Real moments from our deployments — arrivals in Russia, document submissions in Moscow, and our teams working on industrial sites across the country.",
+  "gal.cap.1": "Arrival of our team at the airport",
+  "gal.cap.2": "Document submission centre, Moscow",
+  "gal.cap.3": "Welcome of new workers in Russia",
+  "gal.cap.4": "On site at an industrial project",
+  "gal.cap.5": "Document processing, Moscow",
+  "gal.cap.6": "Winter deployment at a construction site",
+  "gal.cta.title": "Want your project staffed by a team like this?",
+  "gal.cta.btn": "Request Workers",
 
   // Footer
   "footer.desc": "International manpower supply company providing skilled and unskilled workers from India to companies across Russia and globally. 2000+ workers successfully deployed.",
@@ -223,8 +237,22 @@ const ru: Dict = {
   "nav.about": "О нас",
   "nav.services": "Услуги",
   "nav.contact": "Контакты",
+  "nav.gallery": "Наши работы",
   "nav.tagline": "Кадровые решения",
   "nav.request": "Запросить рабочих",
+
+  // Gallery
+  "gal.eyebrow": "Наша работа",
+  "gal.title": "Рабочие на объектах",
+  "gal.subtitle": "Реальные моменты с наших размещений — прибытие в Россию, подача документов в Москве и наши команды на промышленных объектах по всей стране.",
+  "gal.cap.1": "Прибытие нашей команды в аэропорт",
+  "gal.cap.2": "Центр подачи документов, Москва",
+  "gal.cap.3": "Встреча новых рабочих в России",
+  "gal.cap.4": "На объекте промышленного проекта",
+  "gal.cap.5": "Оформление документов, Москва",
+  "gal.cap.6": "Зимнее размещение на стройплощадке",
+  "gal.cta.title": "Хотите команду такого же уровня на свой проект?",
+  "gal.cta.btn": "Запросить рабочих",
 
   // Footer
   "footer.desc": "Международная компания по подбору персонала, предоставляющая квалифицированных и неквалифицированных рабочих из Индии компаниям в России и по всему миру. Более 2000 рабочих успешно трудоустроены.",

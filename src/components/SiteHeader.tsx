@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { LanguageToggle } from "./LanguageToggle";
+import savLogo from "@/assets/sav-logo.jpg";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -11,18 +12,16 @@ export function SiteHeader() {
     { to: "/", label: t("nav.home") },
     { to: "/about", label: t("nav.about") },
     { to: "/services", label: t("nav.services") },
+    { to: "/gallery", label: t("nav.gallery") },
     { to: "/contact", label: t("nav.contact") },
   ] as const;
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-background/85 border-b border-border">
-      <div className="max-w-7xl mx-auto px-6 h-18 py-4 flex items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-2 group shrink-0">
-          <div className="w-10 h-10 rounded-md bg-navy flex items-center justify-center shadow-elegant">
-            <span className="text-gold font-display font-bold text-lg">S</span>
-          </div>
-          <div className="leading-tight">
-            <div className="font-display font-bold text-navy text-lg">Sav Group</div>
+      <div className="max-w-7xl mx-auto px-6 h-18 py-3 flex items-center justify-between gap-4">
+        <Link to="/" className="flex items-center gap-3 group shrink-0">
+          <img src={savLogo} alt="Sav Group" className="h-12 w-auto object-contain" />
+          <div className="leading-tight hidden sm:block">
             <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{t("nav.tagline")}</div>
           </div>
         </Link>
