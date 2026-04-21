@@ -93,9 +93,11 @@
 }
 
 @layer utilities {
+  /* On the dark theme, "navy" surfaces stay deep black, but "text-navy" must
+     render as a light/foreground color so existing components remain legible. */
   .bg-navy { background-color: var(--navy); }
   .bg-navy-light { background-color: var(--navy-light); }
-  .text-navy { color: var(--navy); }
+  .text-navy { color: var(--foreground); }
   .text-gold { color: var(--gold); }
   .bg-gold { background-color: var(--gold); }
   .border-gold { border-color: var(--gold); }
