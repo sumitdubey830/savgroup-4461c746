@@ -2,6 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, Target, Heart, Award } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import teamImg from "@/assets/worker-team.jpg";
+import founderSiraj from "@/assets/founder-sirajuddin.jpg";
+import founderAshish from "@/assets/founder-ashish.jpg";
+import founderVictoria from "@/assets/founder-victoria.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -71,6 +74,34 @@ function About() {
                 <h3 className="text-xl font-bold text-navy mb-2">{v.t}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{v.d}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-gold text-sm uppercase tracking-[0.3em] font-semibold">{t("ap.founders.eyebrow")}</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-navy mt-3">{t("ap.founders.title")}</h2>
+            <p className="text-muted-foreground mt-5">{t("ap.founders.subtitle")}</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { img: founderSiraj, name: t("ap.f1.name"), role: t("ap.f1.role"), bio: t("ap.f1.bio") },
+              { img: founderAshish, name: t("ap.f2.name"), role: t("ap.f2.role"), bio: t("ap.f2.bio") },
+              { img: founderVictoria, name: t("ap.f3.name"), role: t("ap.f3.role"), bio: t("ap.f3.bio") },
+            ].map((f) => (
+              <article key={f.name} className="bg-background border border-border rounded-2xl overflow-hidden shadow-elegant hover:translate-y-[-4px] transition-transform">
+                <div className="aspect-[4/5] overflow-hidden bg-secondary">
+                  <img src={f.img} alt={f.name} className="w-full h-full object-cover" loading="lazy" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-navy">{f.name}</h3>
+                  <p className="text-gold text-xs uppercase tracking-wider font-semibold mt-1">{f.role}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed mt-4">{f.bio}</p>
+                </div>
+              </article>
             ))}
           </div>
         </div>

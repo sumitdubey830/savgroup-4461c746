@@ -170,6 +170,20 @@ const en: Dict = {
   "ap.cta.title": "Let's Discuss Your Workforce Needs",
   "ap.cta.btn": "Get in Touch",
 
+  // Founders
+  "ap.founders.eyebrow": "The People Behind Sav Group",
+  "ap.founders.title": "Meet Our Founders",
+  "ap.founders.subtitle": "Three partners across two countries — combining on-ground selection in India, leadership in Russia, and end-to-end official coordination.",
+  "ap.f1.name": "Sirajuddin Khan",
+  "ap.f1.role": "Co-Founder · Head of Recruitment, India",
+  "ap.f1.bio": "Sirajuddin leads the entire selection process in India, personally overseeing sourcing, screening and skill assessment. His ground network ensures that every worker we send abroad is among the best in their trade — disciplined, verified, and ready to perform from day one.",
+  "ap.f2.name": "Ashish Dubey",
+  "ap.f2.role": "Co-Founder · Director, Russia",
+  "ap.f2.bio": "Based in Russia for over a decade and a graduate of an MBBS programme in the country, Ashish brings deep local knowledge and fluent cultural fluency to the business. He founded Sav Group to bridge the gap between Russian companies seeking efficient labour and skilled Indian workers looking for opportunity.",
+  "ap.f3.name": "Victoria",
+  "ap.f3.role": "Co-Founder · Government Affairs, Russia",
+  "ap.f3.bio": "Victoria handles all government and regulatory work in Russia, managing permits, registrations and compliance end-to-end. She personally ensures every worker reaches the client company safely and on schedule, with all paperwork in perfect order.",
+
   // Services page
   "sp.eyebrow": "What We Do",
   "sp.title": "Complete Manpower Services, Start to Finish",
@@ -396,6 +410,20 @@ const ru: Dict = {
   "ap.val.3.d": "Премиальные результаты при значительно более низкой стоимости, чем на местном рынке труда.",
   "ap.cta.title": "Обсудим ваши кадровые потребности",
   "ap.cta.btn": "Связаться",
+
+  // Founders
+  "ap.founders.eyebrow": "Люди, стоящие за Sav Group",
+  "ap.founders.title": "Наши основатели",
+  "ap.founders.subtitle": "Три партнёра в двух странах — отбор на месте в Индии, руководство в России и полное официальное сопровождение.",
+  "ap.f1.name": "Сираджуддин Хан",
+  "ap.f1.role": "Сооснователь · Руководитель подбора в Индии",
+  "ap.f1.bio": "Сираджуддин лично руководит всем процессом отбора в Индии — поиском, проверкой и оценкой квалификации работников. Его сеть на местах гарантирует, что каждый отправляемый за рубеж работник входит в число лучших в своей профессии: дисциплинирован, проверен и готов к работе с первого дня.",
+  "ap.f2.name": "Ашиш Дубей",
+  "ap.f2.role": "Сооснователь · Директор в России",
+  "ap.f2.bio": "Ашиш живёт в России более десяти лет и получил здесь медицинское образование (MBBS). Он глубоко знает местный рынок и культуру. Sav Group он основал, чтобы соединить российские компании, нуждающиеся в эффективной рабочей силе, с квалифицированными работниками из Индии.",
+  "ap.f3.name": "Виктория",
+  "ap.f3.role": "Сооснователь · Государственные вопросы, Россия",
+  "ap.f3.bio": "Виктория ведёт всю работу с государственными органами в России — разрешения, регистрации и соблюдение законодательства от начала до конца. Она лично обеспечивает, чтобы каждый работник благополучно и вовремя прибыл к компании-заказчику со всеми документами в полном порядке.",
 
   // Services page
   "sp.eyebrow": "Что мы делаем",
