@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
-import savLogo from "@/assets/sav-logo-new.jpg";
+import savLogo from "@/assets/sav-logo-mark.png";
 
 export function SiteFooter() {
   const { t } = useI18n();
@@ -10,7 +10,7 @@ export function SiteFooter() {
       <div className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-10">
         <div className="md:col-span-2">
           <div className="inline-block mb-4">
-            <img src={savLogo} alt="Sav Group" className="h-20 w-auto object-contain rounded-md" />
+            <img src={savLogo} alt="Sav Group" className="h-24 w-auto object-contain" />
           </div>
           <p className="text-primary-foreground/70 max-w-md leading-relaxed">{t("footer.desc")}</p>
         </div>
