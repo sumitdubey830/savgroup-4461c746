@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { LanguageToggle } from "./LanguageToggle";
-import savLogo from "@/assets/sav-logo-dark.png";
+import savLogo from "@/assets/sav-logo-header.png";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
