@@ -18,9 +18,9 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-background/85 border-b border-border">
-      <div className="max-w-7xl mx-auto px-6 h-32 md:h-36 py-2 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-6 h-28 md:h-32 py-2 flex items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-3 group shrink-0">
-          <img src={savLogo} alt="Sav Group" className="h-32 md:h-40 w-auto object-contain" />
+          <img src={savLogo} alt="Sav Group" className="h-24 md:h-28 w-auto object-contain" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">
