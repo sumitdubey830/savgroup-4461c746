@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://savgroup.lovable.app/sitemap.xml
