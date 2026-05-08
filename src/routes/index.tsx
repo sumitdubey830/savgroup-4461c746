@@ -75,9 +75,6 @@ function Home() {
         <div className="absolute inset-0 bg-gradient-hero" />
         <div className="relative max-w-7xl mx-auto px-6 py-24 grid lg:grid-cols-12 gap-10 items-center w-full">
           <div className="lg:col-span-8 text-primary-foreground animate-fade-up">
-            <span className="inline-block px-4 py-2 bg-gold/15 border border-gold/30 text-gold text-xs uppercase tracking-[0.25em] rounded-full mb-6">
-              {t("hero.badge")}
-            </span>
             <h1 className="text-5xl md:text-7xl font-bold leading-[1.05] mb-6">
               {t("hero.title1")}<br />
               {t("hero.title2")} <span className="text-gold">{t("hero.titleHighlight")}</span>
