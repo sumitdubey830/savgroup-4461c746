@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
+import savLogoFooter from "@/assets/sav-logo-footer.png";
 
 export function SiteFooter() {
   const { t } = useI18n();
