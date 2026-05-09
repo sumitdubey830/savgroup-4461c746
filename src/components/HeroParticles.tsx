@@ -11,6 +11,9 @@ type Particle = {
   size: number;
 };
 
+type Point = { x: number; y: number };
+type Triangle = { a: Point; b: Point; c: Point };
+
 export function HeroParticles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -23,7 +26,7 @@ export function HeroParticles() {
 
     const mouse = { x: -9999, y: -9999, active: false };
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const PARTICLE_COUNT = 340;
+    const PARTICLE_COUNT = 900;
     const MOUSE_RADIUS = 110;
 
     let width = 0;
@@ -32,48 +35,67 @@ export function HeroParticles() {
     let tick = 0;
     let particles: Particle[] = [];
 
-    const pointInArrow = (
-      x: number,
-      y: number,
-      arrowX: number,
-      arrowY: number,
-      arrowW: number,
-      arrowH: number,
-    ) => {
-      const nx = (x - arrowX) / arrowW;
-      const ny = (y - arrowY) / arrowH;
-      if (nx < 0 || nx > 1 || ny < 0 || ny > 1) return false;
+    const triangleArea = (t: Triangle) =>
+      Math.abs(
+        (t.a.x * (t.b.y - t.c.y) + t.b.x * (t.c.y - t.a.y) + t.c.x * (t.a.y - t.b.y)) /
+          2,
+      );
 
-      const mid = 0.5;
-      const top = Math.max(0, mid - nx * 0.5);
-      const bottom = Math.min(1, mid + nx * 0.5);
-      return ny >= top && ny <= bottom;
+    const randomPointInTriangle = (t: Triangle): Point => {
+      let r1 = Math.random();
+      let r2 = Math.random();
+      if (r1 + r2 > 1) {
+        r1 = 1 - r1;
+        r2 = 1 - r2;
+      }
+      return {
+        x: t.a.x + r1 * (t.b.x - t.a.x) + r2 * (t.c.x - t.a.x),
+        y: t.a.y + r1 * (t.b.y - t.a.y) + r2 * (t.c.y - t.a.y),
+      };
     };
 
     const buildLogoPoints = () => {
       const points: Array<{ x: number; y: number }> = [];
-      const arrowW = Math.max(220, width * 0.28);
-      const arrowH = Math.max(180, height * 0.48);
-      const arrowX = width * 0.62;
-      const arrowY = (height - arrowH) * 0.5;
+      const logoW = Math.max(280, width * 0.32);
+      const logoH = Math.max(240, height * 0.58);
+      const logoX = width * 0.60;
+      const logoY = (height - logoH) * 0.5;
 
-      let attempts = 0;
-      while (points.length < PARTICLE_COUNT && attempts < PARTICLE_COUNT * 40) {
-        attempts += 1;
-        const x = arrowX + Math.random() * arrowW;
-        const y = arrowY + Math.random() * arrowH;
-        if (pointInArrow(x, y, arrowX, arrowY, arrowW, arrowH)) {
-          points.push({ x, y });
+      // 3-triangle SAV-style mark:
+      // - one large top triangle
+      // - two lower triangles that form the lower arrow/shield shape
+      const topTriangle: Triangle = {
+        a: { x: logoX + logoW * 0.5, y: logoY + logoH * 0.04 },
+        b: { x: logoX + logoW * 0.16, y: logoY + logoH * 0.56 },
+        c: { x: logoX + logoW * 0.84, y: logoY + logoH * 0.56 },
+      };
+
+      const bottomLeftTriangle: Triangle = {
+        a: { x: logoX + logoW * 0.16, y: logoY + logoH * 0.56 },
+        b: { x: logoX + logoW * 0.50, y: logoY + logoH * 0.95 },
+        c: { x: logoX + logoW * 0.41, y: logoY + logoH * 0.56 },
+      };
+
+      const bottomRightTriangle: Triangle = {
+        a: { x: logoX + logoW * 0.84, y: logoY + logoH * 0.56 },
+        b: { x: logoX + logoW * 0.50, y: logoY + logoH * 0.95 },
+        c: { x: logoX + logoW * 0.59, y: logoY + logoH * 0.56 },
+      };
+
+      const triangles = [topTriangle, bottomLeftTriangle, bottomRightTriangle];
+      const totalArea = triangles.reduce((sum, t) => sum + triangleArea(t), 0);
+
+      triangles.forEach((triangle, index) => {
+        const areaShare = triangleArea(triangle) / totalArea;
+        const count =
+          index === triangles.length - 1
+            ? PARTICLE_COUNT - points.length
+            : Math.floor(PARTICLE_COUNT * areaShare);
+
+        for (let i = 0; i < count; i += 1) {
+          points.push(randomPointInTriangle(triangle));
         }
-      }
-
-      while (points.length < PARTICLE_COUNT) {
-        const progress = points.length / PARTICLE_COUNT;
-        const x = arrowX + progress * arrowW;
-        const spread = (progress * arrowH) / 2;
-        const y = arrowY + arrowH / 2 + (Math.random() - 0.5) * spread * 2;
-        points.push({ x, y });
-      }
+      });
 
       return points;
     };
@@ -87,14 +109,14 @@ export function HeroParticles() {
 
       const logoPoints = buildLogoPoints();
       particles = logoPoints.map((point) => ({
-        x: point.x + (Math.random() - 0.5) * 8,
-        y: point.y + (Math.random() - 0.5) * 8,
+        x: point.x + (Math.random() - 0.5) * 4,
+        y: point.y + (Math.random() - 0.5) * 4,
         homeX: point.x,
         homeY: point.y,
         vx: (Math.random() - 0.5) * 0.2,
         vy: (Math.random() - 0.5) * 0.2,
         phase: Math.random() * Math.PI * 2,
-        size: 0.9 + Math.random() * 1.4,
+        size: 0.7 + Math.random() * 0.8,
       }));
     };
 
@@ -178,7 +200,7 @@ export function HeroParticles() {
         p.x = Math.max(0, Math.min(width, p.x));
         p.y = Math.max(0, Math.min(height, p.y));
 
-        ctx.fillStyle = "rgba(228, 241, 255, 0.94)";
+        ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
