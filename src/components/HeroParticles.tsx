@@ -29,6 +29,7 @@ export function HeroParticles() {
     const DOT_SIZE = 2;
     const ALPHA_THRESHOLD = 20;
     const SAMPLE_STEP = 3;
+    const WHITE_BG_THRESHOLD = 245;
 
     let width = 0;
     let height = 0;
@@ -63,8 +64,16 @@ export function HeroParticles() {
       for (let y = 0; y < offscreen.height; y += SAMPLE_STEP) {
         for (let x = 0; x < offscreen.width; x += SAMPLE_STEP) {
           const index = (y * offscreen.width + x) * 4;
+          const r = pixels[index];
+          const g = pixels[index + 1];
+          const b = pixels[index + 2];
           const alpha = pixels[index + 3];
-          if (alpha > ALPHA_THRESHOLD) {
+          const isNearWhiteBackground =
+            r >= WHITE_BG_THRESHOLD &&
+            g >= WHITE_BG_THRESHOLD &&
+            b >= WHITE_BG_THRESHOLD;
+
+          if (alpha > ALPHA_THRESHOLD && !isNearWhiteBackground) {
             points.push({
               x: logoX + x,
               y: logoY + y,
