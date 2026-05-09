@@ -6,6 +6,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { Testimonials } from "@/components/Testimonials";
+import { HeroParticles } from "@/components/HeroParticles";
 import { useI18n } from "@/lib/i18n";
 import heroImg from "@/assets/hero-workers.jpg";
 import welderImg from "@/assets/worker-welder.jpg";
@@ -74,6 +75,7 @@ function Home() {
       <section className="relative min-h-[92vh] flex items-center overflow-hidden">
         <img src={heroImg} alt="Indian construction workers" className="absolute inset-0 w-full h-full object-cover" width={1920} height={1080} />
         <div className="absolute inset-0 bg-gradient-hero" />
+        <HeroParticles />
         <div className="relative max-w-7xl mx-auto px-6 py-24 grid lg:grid-cols-12 gap-10 items-center w-full">
           <div className="lg:col-span-8 text-primary-foreground animate-fade-up">
             <h1 className="text-5xl md:text-7xl font-bold leading-[1.05] mb-6">
