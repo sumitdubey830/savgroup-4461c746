@@ -60,6 +60,28 @@ export const Route = createRootRoute({
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,500&display=swap" },
       { rel: "stylesheet", href: appCss },
+      { rel: "canonical", href: "https://savgroups.com" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Sav Group",
+          url: "https://savgroups.com",
+          logo: "https://savgroups.com/android-chrome-512x512.png",
+          description: "International manpower supply company providing skilled and unskilled Indian workers to companies in Russia.",
+          areaServed: ["RU", "IN"],
+          contactPoint: {
+            "@type": "ContactPoint",
+            telephone: "+7-922-875-6002",
+            contactType: "customer service",
+            email: "savruswork@gmail.com",
+            availableLanguage: ["English", "Russian", "Hindi"],
+          },
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
