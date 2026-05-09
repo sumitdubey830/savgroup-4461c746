@@ -115,6 +115,91 @@
     0%, 100% { opacity: 0.6; }
     50% { opacity: 1; }
   }
+  @keyframes particle-float {
+    0%, 100% {
+      transform: translate3d(
+        calc((var(--mouse-x) - 0.5) * -10px),
+        calc((var(--mouse-y) - 0.5) * -10px),
+        0
+      ) scale(1);
+      opacity: 0.55;
+    }
+    50% {
+      transform: translate3d(
+        calc((var(--mouse-x) - 0.5) * -10px),
+        calc((var(--mouse-y) - 0.5) * -10px - 16px),
+        0
+      ) scale(1.12);
+      opacity: 1;
+    }
+  }
+  @keyframes line-pulse {
+    0%, 100% { opacity: 0.18; }
+    50% { opacity: 0.42; }
+  }
+  @keyframes line-drift {
+    0%, 100% {
+      transform: translate3d(
+        calc((var(--mouse-x) - 0.5) * -6px),
+        calc((var(--mouse-y) - 0.5) * -6px),
+        0
+      ) rotate(var(--line-angle));
+    }
+    50% {
+      transform: translate3d(
+        calc((var(--mouse-x) - 0.5) * -6px + 8px),
+        calc((var(--mouse-y) - 0.5) * -6px - 6px),
+        0
+      ) rotate(calc(var(--line-angle) + 2deg));
+    }
+  }
   .animate-fade-up { animation: fade-up 0.7s var(--transition-smooth) both; }
   .animate-shimmer { animation: shimmer 3s ease-in-out infinite; }
+
+  .hero-particles-layer {
+    --mouse-x: 0.5;
+    --mouse-y: 0.5;
+    pointer-events: none;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 40%, rgba(30, 63, 112, 0.24), rgba(6, 18, 42, 0.92) 65%);
+  }
+
+  .hero-particles-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      240px 240px at calc(var(--mouse-x) * 100%) calc(var(--mouse-y) * 100%),
+      rgba(206, 226, 255, 0.11),
+      rgba(206, 226, 255, 0) 68%
+    );
+    transition: background-position 180ms linear;
+  }
+
+  .hero-particle-dot {
+    position: absolute;
+    left: var(--dot-x);
+    top: var(--dot-y);
+    width: var(--dot-size);
+    height: var(--dot-size);
+    margin-left: calc(var(--dot-size) / -2);
+    margin-top: calc(var(--dot-size) / -2);
+    border-radius: 9999px;
+    background: rgba(228, 237, 255, 0.9);
+    box-shadow: 0 0 14px rgba(178, 203, 246, 0.35);
+    animation: particle-float var(--dot-duration) ease-in-out var(--dot-delay) infinite;
+  }
+
+  .hero-connection-line {
+    position: absolute;
+    left: var(--line-x);
+    top: var(--line-y);
+    width: min(var(--line-length), 240px);
+    height: 1px;
+    transform-origin: left center;
+    background: linear-gradient(90deg, rgba(194, 218, 255, 0.34), rgba(194, 218, 255, 0));
+    box-shadow: 0 0 8px rgba(173, 201, 248, 0.2);
+    animation:
+      line-pulse var(--line-duration) ease-in-out var(--line-delay) infinite,
+      line-drift calc(var(--line-duration) + 3s) ease-in-out var(--line-delay) infinite;
+  }
 }
