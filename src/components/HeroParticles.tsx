@@ -21,7 +21,7 @@ export function HeroParticles() {
     const mouse = { x: -9999, y: -9999, active: false };
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const PARTICLE_COUNT = 150;
-    const MOUSE_RADIUS = 140;
+    const MOUSE_RADIUS = 100;
 
     let width = 0;
     let height = 0;
@@ -48,11 +48,27 @@ export function HeroParticles() {
       });
     };
 
-    const onMove = (event: MouseEvent) => {
+    const updateMousePosition = (clientX: number, clientY: number) => {
       const rect = canvas.getBoundingClientRect();
-      mouse.x = event.clientX - rect.left;
-      mouse.y = event.clientY - rect.top;
-      mouse.active = true;
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+
+      if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+        mouse.x = x;
+        mouse.y = y;
+        mouse.active = true;
+      } else {
+        onLeave();
+      }
+    };
+
+    const onMove = (event: MouseEvent) => {
+      updateMousePosition(event.clientX, event.clientY);
+    };
+
+    // Fallback tracking keeps interaction working even if another overlay sits above the canvas.
+    const onWindowMove = (event: MouseEvent) => {
+      updateMousePosition(event.clientX, event.clientY);
     };
 
     const onLeave = () => {
@@ -64,10 +80,7 @@ export function HeroParticles() {
     const onTouchMove = (event: TouchEvent) => {
       const touch = event.touches[0];
       if (!touch) return;
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = touch.clientX - rect.left;
-      mouse.y = touch.clientY - rect.top;
-      mouse.active = true;
+      updateMousePosition(touch.clientX, touch.clientY);
     };
 
     const onTouchEnd = () => onLeave();
@@ -85,16 +98,20 @@ export function HeroParticles() {
 
           if (dist > 0 && dist < MOUSE_RADIUS) {
             // Repel particles away from the cursor for a scatter effect.
-            const force = (1 - dist / MOUSE_RADIUS) * 0.085;
+            const force = (1 - dist / MOUSE_RADIUS) * 0.45;
             p.vx -= (dx / dist) * force;
             p.vy -= (dy / dist) * force;
+
+            // Add an immediate position nudge so nearby dots quickly jump away.
+            p.x -= (dx / dist) * 1.1;
+            p.y -= (dy / dist) * 1.1;
           }
         }
 
         p.vx *= 0.994;
         p.vy *= 0.994;
-        p.vx = Math.max(-0.75, Math.min(0.75, p.vx));
-        p.vy = Math.max(-0.75, Math.min(0.75, p.vy));
+        p.vx = Math.max(-1.4, Math.min(1.4, p.vx));
+        p.vy = Math.max(-1.4, Math.min(1.4, p.vy));
 
         p.x += p.vx;
         p.y += p.vy;
@@ -119,6 +136,7 @@ export function HeroParticles() {
 
     window.addEventListener("resize", resize);
     canvas.addEventListener("mousemove", onMove, { passive: true });
+    window.addEventListener("mousemove", onWindowMove, { passive: true });
     canvas.addEventListener("mouseleave", onLeave);
     canvas.addEventListener("touchmove", onTouchMove, { passive: true });
     canvas.addEventListener("touchend", onTouchEnd);
@@ -127,6 +145,7 @@ export function HeroParticles() {
       window.cancelAnimationFrame(animationId);
       window.removeEventListener("resize", resize);
       canvas.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mousemove", onWindowMove);
       canvas.removeEventListener("mouseleave", onLeave);
       canvas.removeEventListener("touchmove", onTouchMove);
       canvas.removeEventListener("touchend", onTouchEnd);
