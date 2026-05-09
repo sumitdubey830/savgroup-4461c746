@@ -15,9 +15,10 @@ import teamImg from "@/assets/worker-team.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Sav Group — Reliable Workforce Solutions from India to Russia" },
-      { name: "description", content: "Sav Group supplies skilled and general Indian workers to companies in Russia. 2000+ workers deployed. Welders, drivers, fitters, loaders & more." },
-      { property: "og:title", content: "Sav Group — Reliable Workforce Solutions from India" },
+      { title: "Sav Group — Indian Workers for Russia | Manpower Supply India to Russia" },
+      { name: "description", content: "Sav Group supplies skilled & general Indian workers to companies in Russia. 2000+ workers deployed: welders, drivers, fitters, loaders. Рабочая сила из Индии." },
+      { name: "keywords", content: "Indian workers for Russia, manpower supply India to Russia, workforce solutions Russia, рабочая сила из Индии, индийские рабочие в России, hire Indian workers, Indian welders Russia, Indian drivers Russia, labour supply Russia, recruitment agency India Russia" },
+      { property: "og:title", content: "Sav Group — Indian Workers for Russia" },
       { property: "og:description", content: "International manpower supply: skilled & unskilled Indian workers for Russian companies. Fast deployment, full documentation, replacement guarantee." },
       { property: "og:image", content: heroImg },
       { property: "og:type", content: "website" },
