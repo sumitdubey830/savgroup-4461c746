@@ -10,9 +10,10 @@ import img6 from "@/assets/gallery-winter-site.png";
 export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
-      { title: "Our Work — Sav Group Workers in Action" },
-      { name: "description", content: "Photos of Sav Group's Indian workers arriving in Russia, completing documentation in Moscow, and working on industrial and construction sites." },
-      { property: "og:title", content: "Our Work — Sav Group Workers in Action" },
+      { title: "Our Work — Indian Workers Deployed Across Russia | Sav Group" },
+      { name: "description", content: "Photos of Sav Group's Indian workers arriving in Russia, completing documentation in Moscow, and on industrial & construction sites. Индийские рабочие в России." },
+      { name: "keywords", content: "Indian workers in Russia, manpower deployment Russia, Indian workers construction Russia, индийские рабочие в России, рабочая сила из Индии, India Russia workforce" },
+      { property: "og:title", content: "Our Work — Indian Workers Deployed Across Russia" },
       { property: "og:description", content: "Real photos of our deployments to Russia: airport arrivals, document processing in Moscow, and on-site work." },
       { property: "og:image", content: "https://savhr-bridge.lovable.app" + img3 },
       { name: "twitter:image", content: "https://savhr-bridge.lovable.app" + img3 },

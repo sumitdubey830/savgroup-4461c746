@@ -9,9 +9,10 @@ import founderVictoria from "@/assets/founder-victoria.jpg";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Sav Group — International Manpower Supply Company" },
-      { name: "description", content: "Sav Group is an international manpower supply company with 2000+ Indian workers placed in Russian construction, logistics and manufacturing firms." },
-      { property: "og:title", content: "About Sav Group" },
+      { title: "About Sav Group — Indian Manpower Agency for Russia" },
+      { name: "description", content: "Sav Group is a trusted India-Russia manpower agency. 2000+ Indian workers placed in Russian construction, logistics & manufacturing. Поставщик рабочей силы из Индии." },
+      { name: "keywords", content: "Indian manpower agency, India Russia recruitment, manpower supply India to Russia, workforce solutions Russia, рабочая сила из Индии, индийская кадровая компания, Indian workers for Russia" },
+      { property: "og:title", content: "About Sav Group — Indian Manpower Agency for Russia" },
       { property: "og:description", content: "Trusted international manpower supplier — 2000+ Indian workers deployed across Russia." },
       { property: "og:image", content: teamImg },
     ],

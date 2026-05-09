@@ -6,9 +6,10 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Sav Group — Request Workers from India" },
-      { name: "description", content: "Contact Sav Group to request skilled or general workers. Phone +7 922 875 6002, email savruswork@gmail.com. Response within 24 hours." },
-      { property: "og:title", content: "Contact Sav Group" },
+      { title: "Contact Sav Group — Hire Indian Workers for Russia" },
+      { name: "description", content: "Contact Sav Group to hire Indian workers for Russia. Phone +7 922 875 6002, email savruswork@gmail.com. Response within 24 hours. Заказать рабочую силу из Индии." },
+      { name: "keywords", content: "hire Indian workers Russia, contact manpower agency Russia, рабочая сила из Индии заказать, Indian workers for Russia contact, India Russia recruitment contact" },
+      { property: "og:title", content: "Contact Sav Group — Hire Indian Workers for Russia" },
       { property: "og:description", content: "Request workers from India for your company. We respond within 24 hours." },
     ],
   }),
