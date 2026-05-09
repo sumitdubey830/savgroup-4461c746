@@ -45,7 +45,7 @@ export function HeroParticles() {
   return (
     <div
       ref={hostRef}
-      className="absolute inset-0 pointer-events-none"
+      className="absolute inset-0"
       aria-hidden="true"
     />
   );
