@@ -12,7 +12,6 @@ type Particle = {
 };
 
 type Point = { x: number; y: number };
-type Triangle = { a: Point; b: Point; c: Point };
 
 export function HeroParticles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -26,76 +25,53 @@ export function HeroParticles() {
 
     const mouse = { x: -9999, y: -9999, active: false };
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const PARTICLE_COUNT = 900;
     const MOUSE_RADIUS = 110;
+    const DOT_SIZE = 2;
+    const ALPHA_THRESHOLD = 20;
+    const SAMPLE_STEP = 3;
 
     let width = 0;
     let height = 0;
     let animationId = 0;
     let tick = 0;
     let particles: Particle[] = [];
+    let logoImage: HTMLImageElement | null = null;
+    let logoLoaded = false;
 
-    const triangleArea = (t: Triangle) =>
-      Math.abs(
-        (t.a.x * (t.b.y - t.c.y) + t.b.x * (t.c.y - t.a.y) + t.c.x * (t.a.y - t.b.y)) /
-          2,
-      );
+    const buildLogoPointsFromImage = (): Point[] => {
+      if (!logoImage) return [];
 
-    const randomPointInTriangle = (t: Triangle): Point => {
-      let r1 = Math.random();
-      let r2 = Math.random();
-      if (r1 + r2 > 1) {
-        r1 = 1 - r1;
-        r2 = 1 - r2;
-      }
-      return {
-        x: t.a.x + r1 * (t.b.x - t.a.x) + r2 * (t.c.x - t.a.x),
-        y: t.a.y + r1 * (t.b.y - t.a.y) + r2 * (t.c.y - t.a.y),
-      };
-    };
-
-    const buildLogoPoints = () => {
-      const points: Array<{ x: number; y: number }> = [];
-      const logoW = Math.max(280, width * 0.32);
-      const logoH = Math.max(240, height * 0.58);
+      const logoW = Math.max(260, width * 0.34);
+      const logoH = Math.max(220, height * 0.58);
       const logoX = width * 0.60;
       const logoY = (height - logoH) * 0.5;
 
-      // 3-triangle SAV-style mark:
-      // - one large top triangle
-      // - two lower triangles that form the lower arrow/shield shape
-      const topTriangle: Triangle = {
-        a: { x: logoX + logoW * 0.5, y: logoY + logoH * 0.04 },
-        b: { x: logoX + logoW * 0.16, y: logoY + logoH * 0.56 },
-        c: { x: logoX + logoW * 0.84, y: logoY + logoH * 0.56 },
-      };
+      const offscreen = document.createElement("canvas");
+      offscreen.width = Math.max(1, Math.floor(logoW));
+      offscreen.height = Math.max(1, Math.floor(logoH));
 
-      const bottomLeftTriangle: Triangle = {
-        a: { x: logoX + logoW * 0.16, y: logoY + logoH * 0.56 },
-        b: { x: logoX + logoW * 0.50, y: logoY + logoH * 0.95 },
-        c: { x: logoX + logoW * 0.41, y: logoY + logoH * 0.56 },
-      };
+      const offCtx = offscreen.getContext("2d");
+      if (!offCtx) return [];
 
-      const bottomRightTriangle: Triangle = {
-        a: { x: logoX + logoW * 0.84, y: logoY + logoH * 0.56 },
-        b: { x: logoX + logoW * 0.50, y: logoY + logoH * 0.95 },
-        c: { x: logoX + logoW * 0.59, y: logoY + logoH * 0.56 },
-      };
+      offCtx.clearRect(0, 0, offscreen.width, offscreen.height);
+      offCtx.drawImage(logoImage, 0, 0, offscreen.width, offscreen.height);
 
-      const triangles = [topTriangle, bottomLeftTriangle, bottomRightTriangle];
-      const totalArea = triangles.reduce((sum, t) => sum + triangleArea(t), 0);
+      const imageData = offCtx.getImageData(0, 0, offscreen.width, offscreen.height);
+      const pixels = imageData.data;
+      const points: Point[] = [];
 
-      triangles.forEach((triangle, index) => {
-        const areaShare = triangleArea(triangle) / totalArea;
-        const count =
-          index === triangles.length - 1
-            ? PARTICLE_COUNT - points.length
-            : Math.floor(PARTICLE_COUNT * areaShare);
-
-        for (let i = 0; i < count; i += 1) {
-          points.push(randomPointInTriangle(triangle));
+      for (let y = 0; y < offscreen.height; y += SAMPLE_STEP) {
+        for (let x = 0; x < offscreen.width; x += SAMPLE_STEP) {
+          const index = (y * offscreen.width + x) * 4;
+          const alpha = pixels[index + 3];
+          if (alpha > ALPHA_THRESHOLD) {
+            points.push({
+              x: logoX + x,
+              y: logoY + y,
+            });
+          }
         }
-      });
+      }
 
       return points;
     };
@@ -107,7 +83,9 @@ export function HeroParticles() {
       canvas.height = Math.max(1, Math.floor(height * dpr));
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const logoPoints = buildLogoPoints();
+      if (!logoLoaded) return;
+
+      const logoPoints = buildLogoPointsFromImage();
       particles = logoPoints.map((point) => ({
         x: point.x + (Math.random() - 0.5) * 4,
         y: point.y + (Math.random() - 0.5) * 4,
@@ -116,7 +94,7 @@ export function HeroParticles() {
         vx: (Math.random() - 0.5) * 0.2,
         vy: (Math.random() - 0.5) * 0.2,
         phase: Math.random() * Math.PI * 2,
-        size: 0.7 + Math.random() * 0.8,
+        size: DOT_SIZE,
       }));
     };
 
@@ -161,6 +139,11 @@ export function HeroParticles() {
       tick += 0.016;
       ctx.clearRect(0, 0, width, height);
 
+      if (!particles.length) {
+        animationId = window.requestAnimationFrame(draw);
+        return;
+      }
+
       for (let i = 0; i < particles.length; i += 1) {
         const p = particles[i];
 
@@ -200,7 +183,7 @@ export function HeroParticles() {
         p.x = Math.max(0, Math.min(width, p.x));
         p.y = Math.max(0, Math.min(height, p.y));
 
-        ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+        ctx.fillStyle = "rgba(255,255,255,0.95)";
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
@@ -209,9 +192,17 @@ export function HeroParticles() {
       animationId = window.requestAnimationFrame(draw);
     };
 
+    const image = new Image();
+    image.decoding = "async";
+    image.onload = () => {
+      logoImage = image;
+      logoLoaded = true;
+      resize();
+    };
+    image.src = "/assets/sav-logo-header-DuIxgHyd.png";
+
     resize();
     draw();
-
     window.addEventListener("resize", resize);
     canvas.addEventListener("mousemove", onMove, { passive: true });
     window.addEventListener("mousemove", onWindowMove, { passive: true });
