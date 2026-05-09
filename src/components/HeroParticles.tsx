@@ -20,9 +20,8 @@ export function HeroParticles() {
 
     const mouse = { x: -9999, y: -9999, active: false };
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const PARTICLE_COUNT = 90;
-    const LINE_DISTANCE = 130;
-    const MOUSE_RADIUS = 150;
+    const PARTICLE_COUNT = 150;
+    const MOUSE_RADIUS = 140;
 
     let width = 0;
     let height = 0;
@@ -38,13 +37,13 @@ export function HeroParticles() {
 
       particles = Array.from({ length: PARTICLE_COUNT }, () => {
         const angle = Math.random() * Math.PI * 2;
-        const speed = 0.22 + Math.random() * 0.35;
+        const speed = 0.18 + Math.random() * 0.22;
         return {
           x: Math.random() * width,
           y: Math.random() * height,
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed,
-          size: 1.2 + Math.random() * 1.4,
+          size: 1 + Math.random() * 1.6,
         };
       });
     };
@@ -85,16 +84,17 @@ export function HeroParticles() {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist > 0 && dist < MOUSE_RADIUS) {
-            const force = (1 - dist / MOUSE_RADIUS) * 0.032;
-            p.vx += (dx / dist) * force;
-            p.vy += (dy / dist) * force;
+            // Repel particles away from the cursor for a scatter effect.
+            const force = (1 - dist / MOUSE_RADIUS) * 0.085;
+            p.vx -= (dx / dist) * force;
+            p.vy -= (dy / dist) * force;
           }
         }
 
-        p.vx *= 0.985;
-        p.vy *= 0.985;
-        p.vx = Math.max(-0.9, Math.min(0.9, p.vx));
-        p.vy = Math.max(-0.9, Math.min(0.9, p.vy));
+        p.vx *= 0.994;
+        p.vy *= 0.994;
+        p.vx = Math.max(-0.75, Math.min(0.75, p.vx));
+        p.vy = Math.max(-0.75, Math.min(0.75, p.vy));
 
         p.x += p.vx;
         p.y += p.vy;
@@ -104,32 +104,8 @@ export function HeroParticles() {
 
         p.x = Math.max(0, Math.min(width, p.x));
         p.y = Math.max(0, Math.min(height, p.y));
-      }
 
-      const lineDistanceSq = LINE_DISTANCE * LINE_DISTANCE;
-      for (let i = 0; i < particles.length; i += 1) {
-        const a = particles[i];
-        for (let j = i + 1; j < particles.length; j += 1) {
-          const b = particles[j];
-          const dx = a.x - b.x;
-          const dy = a.y - b.y;
-          const distSq = dx * dx + dy * dy;
-
-          if (distSq <= lineDistanceSq) {
-            const alpha = 1 - distSq / lineDistanceSq;
-            ctx.strokeStyle = `rgba(188, 214, 255, ${0.08 + alpha * 0.3})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      for (let i = 0; i < particles.length; i += 1) {
-        const p = particles[i];
-        ctx.fillStyle = "rgba(228, 240, 255, 0.95)";
+        ctx.fillStyle = "rgba(236, 245, 255, 0.92)";
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
