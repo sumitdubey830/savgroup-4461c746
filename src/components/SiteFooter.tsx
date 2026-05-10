@@ -9,18 +9,26 @@ function FooterBirds() {
   const vantaEffect = useRef<any>(null);
 
   useEffect(() => {
-    let THREE: any;
-    let VANTA: any;
+    const loadScripts = () => {
+      return new Promise<void>((resolve) => {
+        if ((window as any).VANTA) { resolve(); return; }
+        
+        const threeScript = document.createElement("script");
+        threeScript.src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js";
+        threeScript.onload = () => {
+          const vantaScript = document.createElement("script");
+          vantaScript.src = "https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js";
+          vantaScript.onload = () => resolve();
+          document.head.appendChild(vantaScript);
+        };
+        document.head.appendChild(threeScript);
+      });
+    };
 
-    const load = async () => {
-      THREE = await import("three");
-      const vantaMod = await import("vanta/dist/vanta.birds.min");
-      VANTA = vantaMod.default;
-
-      if (vantaRef.current && !vantaEffect.current) {
-        vantaEffect.current = VANTA({
+    loadScripts().then(() => {
+      if (vantaRef.current && !vantaEffect.current && (window as any).VANTA) {
+        vantaEffect.current = (window as any).VANTA.BIRDS({
           el: vantaRef.current,
-          THREE,
           mouseControls: true,
           touchControls: true,
           backgroundColor: 0x071326,
@@ -35,9 +43,7 @@ function FooterBirds() {
           quantity: 3,
         });
       }
-    };
-
-    load();
+    });
 
     return () => {
       if (vantaEffect.current) {
