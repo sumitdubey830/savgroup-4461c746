@@ -14,7 +14,7 @@ function FooterBirds() {
         if ((window as any).VANTA) { resolve(); return; }
         
         const threeScript = document.createElement("script");
-        threeScript.src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js";
+        threeScript.src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js";
         threeScript.onload = () => {
           const vantaScript = document.createElement("script");
           vantaScript.src = "https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js";
