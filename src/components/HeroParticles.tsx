@@ -165,8 +165,8 @@ export function HeroParticles() {
         // Spring back to logo shape while allowing subtle ambient drift.
         const homeDx = p.homeX + floatX - p.x;
         const homeDy = p.homeY + floatY - p.y;
-        p.vx += homeDx * 0.016;
-        p.vy += homeDy * 0.016;
+        p.vx += homeDx * 0.008;
+        p.vy += homeDy * 0.008;
 
         if (mouse.active) {
           const dx = mouse.x - p.x;
