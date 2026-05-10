@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import savLogoIcon from "@/assets/sav-logo.png";
 
 type Particle = {
   x: number;
@@ -209,8 +208,9 @@ export function HeroParticles() {
       logoLoaded = true;
       resize();
     };
-    // Icon-only asset (`src/assets/sav-logo.png`). Vite resolves the import URL.
-    image.src = savLogoIcon;
+    // Public asset: `public/apple-touch-icon.png` → served at `/apple-touch-icon.png`
+    image.src = "/logo-icon.png";
+  
 
     resize();
     draw();
