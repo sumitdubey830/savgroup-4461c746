@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import savLogoHeader from "@/assets/sav-logo-header.png";
+import savLogoIcon from "@/assets/sav-logo.png";
 
 type Particle = {
   x: number;
@@ -27,7 +27,7 @@ export function HeroParticles() {
     const mouse = { x: -9999, y: -9999, active: false };
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const MOUSE_RADIUS = 110;
-    const DOT_SIZE = 2;
+    const DOT_SIZE = 2.5;
     const ALPHA_THRESHOLD = 20;
     const SAMPLE_STEP = 3;
     const WHITE_BG_THRESHOLD = 245;
@@ -193,7 +193,7 @@ export function HeroParticles() {
         p.x = Math.max(0, Math.min(width, p.x));
         p.y = Math.max(0, Math.min(height, p.y));
 
-        ctx.fillStyle = "rgba(255,255,255,0.95)";
+        ctx.fillStyle = "rgba(255, 255, 255, 1)";
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
@@ -209,9 +209,8 @@ export function HeroParticles() {
       logoLoaded = true;
       resize();
     };
-    // Same file as `src/assets/sav-logo-header.png`. Use Vite's resolved URL so the
-    // image loads in dev/production (a raw `/src/assets/...` path is not served).
-    image.src = savLogoHeader;
+    // Icon-only asset (`src/assets/sav-logo.png`). Vite resolves the import URL.
+    image.src = savLogoIcon;
 
     resize();
     draw();
