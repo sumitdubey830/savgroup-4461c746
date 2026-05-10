@@ -2,12 +2,60 @@ import { Link } from "@tanstack/react-router";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import savLogoFooter from "@/assets/sav-logo-footer.png";
+import { useEffect, useRef } from "react";
+
+function FooterBirds() {
+  const vantaRef = useRef<HTMLDivElement>(null);
+  const vantaEffect = useRef<any>(null);
+
+  useEffect(() => {
+    let THREE: any;
+    let VANTA: any;
+
+    const load = async () => {
+      THREE = await import("three");
+      const vantaMod = await import("vanta/dist/vanta.birds.min");
+      VANTA = vantaMod.default;
+
+      if (vantaRef.current && !vantaEffect.current) {
+        vantaEffect.current = VANTA({
+          el: vantaRef.current,
+          THREE,
+          mouseControls: true,
+          touchControls: true,
+          backgroundColor: 0x071326,
+          color1: 0xc9a84c,
+          color2: 0x1a3a6b,
+          birdSize: 1.2,
+          wingSpan: 25,
+          speedLimit: 4,
+          separation: 60,
+          alignment: 40,
+          cohesion: 30,
+          quantity: 3,
+        });
+      }
+    };
+
+    load();
+
+    return () => {
+      if (vantaEffect.current) {
+        vantaEffect.current.destroy();
+        vantaEffect.current = null;
+      }
+    };
+  }, []);
+
+  return <div ref={vantaRef} className="absolute inset-0 w-full h-full" />;
+}
 
 export function SiteFooter() {
   const { t } = useI18n();
   return (
-    <footer className="bg-navy text-primary-foreground">
-      <div className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-10">
+    <footer className="bg-navy text-primary-foreground relative overflow-hidden">
+      <FooterBirds />
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-10">
         <div className="md:col-span-2">
           <div className="inline-block mb-4 w-[220px] md:w-[260px]">
             <img src={savLogoFooter} alt="Sav Group" className="w-full h-auto object-contain" />
@@ -35,7 +83,7 @@ export function SiteFooter() {
           </ul>
         </div>
       </div>
-      <div className="border-t border-primary-foreground/10">
+      <div className="relative z-10 border-t border-primary-foreground/10">
         <div className="max-w-7xl mx-auto px-6 py-6 text-xs text-primary-foreground/50 flex flex-col sm:flex-row justify-between gap-2">
           <span>© {new Date().getFullYear()} Sav Group. {t("footer.rights")}</span>
           <span>Ashish Dubey · {t("footer.role")}</span>
