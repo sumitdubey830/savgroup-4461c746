@@ -26,9 +26,9 @@ export function HeroParticles() {
     const mouse = { x: -9999, y: -9999, active: false };
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const MOUSE_RADIUS = 110;
-    const DOT_SIZE = 2.5;
+    const DOT_SIZE = 1.2;
     const ALPHA_THRESHOLD = 20;
-    const SAMPLE_STEP = 3;
+    const SAMPLE_STEP = 6;
     const WHITE_BG_THRESHOLD = 245;
 
     let width = 0;
@@ -172,7 +172,7 @@ export function HeroParticles() {
 
           if (dist > 0 && dist < MOUSE_RADIUS) {
             // Scatter away from cursor.
-            const force = (1 - dist / MOUSE_RADIUS) * 1.25;
+            const force = (1 - dist / MOUSE_RADIUS) * 4;
             p.vx -= (dx / dist) * force;
             p.vy -= (dy / dist) * force;
           }
