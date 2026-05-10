@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import savLogoHeader from "@/assets/sav-logo-header.png";
 
 type Particle = {
   x: number;
@@ -208,7 +209,9 @@ export function HeroParticles() {
       logoLoaded = true;
       resize();
     };
-    image.src = "/assets/sav-logo-header-DuIxgHyd.png";
+    // Same file as `src/assets/sav-logo-header.png`. Use Vite's resolved URL so the
+    // image loads in dev/production (a raw `/src/assets/...` path is not served).
+    image.src = savLogoHeader;
 
     resize();
     draw();
