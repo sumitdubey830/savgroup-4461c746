@@ -36,7 +36,7 @@ export const Route = createRootRoute({
       { name: "description", content: "Sav Group supplies skilled & unskilled Indian workers to Russia. Trusted manpower agency: welders, drivers, fitters, loaders. Рабочая сила из Индии для России." },
       { name: "keywords", content: "Indian workers for Russia, manpower supply India to Russia, workforce solutions Russia, рабочая сила из Индии, индийские рабочие в России, поставка рабочей силы из Индии, Indian manpower agency, hire Indian workers Russia, skilled workers from India, Indian welders Russia, Indian drivers Russia, construction workers India, labour supply Russia, indian workforce Russia, recruitment agency India Russia" },
       { name: "author", content: "Sav Group" },
-      { name: "robots", content: "index, follow" },
+      { name: "yandex-verification", content: "a36683f30b40c8b4" },
       { httpEquiv: "content-language", content: "en, ru" },
       { property: "og:title", content: "Sav Group — Indian Workers for Russia | Manpower Supply India to Russia" },
       { name: "twitter:title", content: "Sav Group — Indian Workers for Russia | Manpower Supply India to Russia" },
