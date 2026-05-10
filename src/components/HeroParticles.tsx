@@ -23,7 +23,7 @@ export function HeroParticles() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const mouse = { x: -9999, y: -9999, active: false };
+    const mouse = { x: -9999, y: -9999, active: false, vx: 0, vy: 0, lastX: -9999, lastY: -9999 };
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const MOUSE_RADIUS = 110;
     const DOT_SIZE = 1.2;
@@ -113,6 +113,10 @@ export function HeroParticles() {
       const y = clientY - rect.top;
 
       if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+        mouse.vx = x - mouse.lastX;
+        mouse.vy = y - mouse.lastY;
+        mouse.lastX = x;
+        mouse.lastY = y;
         mouse.x = x;
         mouse.y = y;
         mouse.active = true;
@@ -120,7 +124,6 @@ export function HeroParticles() {
         onLeave();
       }
     };
-
     const onMove = (event: MouseEvent) => {
       updateMousePosition(event.clientX, event.clientY);
     };
@@ -172,7 +175,8 @@ export function HeroParticles() {
 
           if (dist > 0 && dist < MOUSE_RADIUS) {
             // Scatter away from cursor.
-            const force = (1 - dist / MOUSE_RADIUS) * 4;
+            const speed = Math.sqrt(mouse.vx * mouse.vx + mouse.vy * mouse.vy);
+            const force = (1 - dist / MOUSE_RADIUS) * Math.min(8, 1 + speed * 0.4);
             p.vx -= (dx / dist) * force;
             p.vy -= (dy / dist) * force;
           }
