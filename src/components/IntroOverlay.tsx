@@ -22,25 +22,24 @@ export default function IntroOverlay() {
       `}
     >
       <div className="relative flex items-center justify-center">
-
+  
         {/* Ambient glow */}
-        <div className="absolute h-[400px] w-[400px] rounded-full bg-white/5 blur-3xl" />
-
-        {/* Logo container */}
-        <div className="relative">
-
-          {/* Logo */}
+        <div className="absolute h-[520px] w-[520px] rounded-full bg-blue-400/20 blur-[140px] animate-pulse" />
+  
+        {/* Logo */}
+        <div className="logo-wrapper">
+  
           <img
             src="/logo-icon.png"
             alt="Sav Group"
-            className="relative z-10 w-[240px] animate-metalReveal"
+            className="relative z-10 w-[200px] logo-base"
           />
-
-          {/* Moving light */}
-          <div className="light-sweep" />
-
+  
+          
+  
         </div>
+  
       </div>
     </div>
   );
-}
+} 
