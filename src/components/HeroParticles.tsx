@@ -258,6 +258,9 @@ export function HeroParticles() {
         p.vx += homeDx * 0.0095;
         p.vy += homeDy * 0.0095;
 
+        p.vx = Math.max(-8, Math.min(8, p.vx));
+        p.vy = Math.max(-8, Math.min(8, p.vy));
+        
         // CURSOR INTERACTION
         if (mouse.active) {
           const dx = mouse.x - p.x;
