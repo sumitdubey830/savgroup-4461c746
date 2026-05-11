@@ -35,7 +35,6 @@ export default function IntroOverlay() {
                   className="relative z-10 w-[220px] logo-base"
                   />
 
-<div className="logo-reflection" />
 
 </div>
   
