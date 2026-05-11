@@ -28,16 +28,16 @@ export default function IntroOverlay() {
   
         {/* Logo */}
         <div className="logo-wrapper">
-  
-          <img
-            src="/logo-icon.png"
-            alt="Sav Group"
-            className="relative z-10 w-[200px] logo-base"
-          />
-  
-          
-  
-        </div>
+
+                 <img
+                  src="/logo-icon.png"
+                  alt="Sav Group"
+                  className="relative z-10 w-[220px] logo-base"
+                  />
+
+<div className="logo-reflection" />
+
+</div>
   
       </div>
     </div>
