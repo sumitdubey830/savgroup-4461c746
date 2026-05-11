@@ -255,8 +255,8 @@ export function HeroParticles() {
         const homeDx = p.homeX - p.x;
         const homeDy = p.homeY - p.y;
 
-        p.vx += homeDx * 0.012;
-        p.vy += homeDy * 0.012;
+        p.vx += homeDx * 0.0025;
+        p.vy += homeDy * 0.0025;
 
         // CURSOR INTERACTION
         if (mouse.active) {
@@ -285,8 +285,8 @@ export function HeroParticles() {
         }
 
         // DAMPING
-        p.vx *= 0.90;
-        p.vy *= 0.90;
+        p.vx *= 0.97;
+        p.vy *= 0.97;
 
         // POSITION UPDATE
         p.x += p.vx;
