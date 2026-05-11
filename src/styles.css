@@ -261,25 +261,21 @@
 
   75% {
     opacity: 1;
-  
     filter:
-      brightness(2.4)
-      contrast(1.25)
-      saturate(1.15)
-      drop-shadow(0 0 55px rgba(120,180,255,0.7));
+      brightness(1.4)
+      contrast(1.1)
+      saturate(1.05)
+      drop-shadow(0 0 20px rgba(120,180,255,0.3));
   }
 
   100% {
     opacity: 1;
-
-    transform:
-      scale(1);
-
+    transform: scale(1);
     filter:
       brightness(1)
       contrast(1)
       saturate(1)
-      drop-shadow(0 0 35px rgba(120,180,255,0.45));
+      drop-shadow(0 0 12px rgba(120,180,255,0.2));
   }
 }
 @keyframes ringExpand {

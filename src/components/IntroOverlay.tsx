@@ -31,8 +31,7 @@ export default function IntroOverlay() {
           ${phase === "intro" ? "ring-expand" : ""}`} 
         />
 
-        {/* Ambient glow */}
-        <div className="absolute h-[520px] w-[520px] rounded-full bg-blue-400/20 blur-[140px] animate-pulse" />
+      
 
         {/* Logo */}
         <div className="logo-wrapper">
