@@ -2,6 +2,7 @@ import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/r
 import { Toaster } from "@/components/ui/sonner";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import IntroOverlay from "@/components/IntroOverlay";
 import { I18nProvider, useI18n } from "@/lib/i18n";
 
 import appCss from "../styles.css?url";
@@ -107,6 +108,9 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   return (
     <I18nProvider>
+
+      <IntroOverlay />
+
       <div className="min-h-screen flex flex-col">
         <SiteHeader />
         <main className="flex-1">
@@ -115,6 +119,7 @@ function RootComponent() {
         <SiteFooter />
         <Toaster />
       </div>
+
     </I18nProvider>
   );
 }
