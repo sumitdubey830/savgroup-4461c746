@@ -9,15 +9,15 @@ import pyaterochka from "@/assets/clients/pyaterochka.png";
 import btk from "@/assets/clients/btk.png";
 
 const logos = [
-  { src: gazprom, alt: "Gazprom" },
-  { src: promstroy, alt: "Promstroy" },
-  { src: interpol, alt: "Interpol Construction" },
-  { src: amur, alt: "Amur Minerals" },
-  { src: velesstroy, alt: "Velesstroy" },
-  { src: yamata, alt: "Yamata" },
-  { src: ozon, alt: "Ozon" },
-  { src: pyaterochka, alt: "Pyaterochka" },
-  { src: btk, alt: "BTK Group" },
+  { src: gazprom, alt: "Gazprom", sizeClass: "max-h-24 scale-125" },
+  { src: promstroy, alt: "Promstroy", sizeClass: "max-h-24 scale-[2.4]" },
+  { src: interpol, alt: "Interpol Construction", sizeClass: "max-h-24 scale-125" },
+  { src: amur, alt: "Amur Minerals", sizeClass: "max-h-16" },
+  { src: velesstroy, alt: "Velesstroy", sizeClass: "max-h-16" },
+  { src: yamata, alt: "Yamata", sizeClass: "max-h-16" },
+  { src: ozon, alt: "Ozon", sizeClass: "max-h-24 scale-125" },
+  { src: pyaterochka, alt: "Pyaterochka", sizeClass: "max-h-16" },
+  { src: btk, alt: "BTK Group", sizeClass: "max-h-24 scale-125" },
 ];
 
 export function ClientMarquee({ heading }: { heading: string }) {
