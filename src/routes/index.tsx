@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { Testimonials } from "@/components/Testimonials";
 import { HeroParticles } from "@/components/HeroParticles";
+import { WorkersChart } from "@/components/WorkersChart";
 import { useI18n } from "@/lib/i18n";
 import heroImg from "@/assets/hero-workers.jpg";
 import welderImg from "@/assets/worker-welder.jpg";
