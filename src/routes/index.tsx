@@ -12,7 +12,7 @@ import { useI18n } from "@/lib/i18n";
 import heroImg from "@/assets/hero-workers.jpg";
 import welderImg from "@/assets/worker-welder.jpg";
 import warehouseImg from "@/assets/worker-warehouse.jpg";
-import teamImg from "@/assets/worker-team.jpg";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
