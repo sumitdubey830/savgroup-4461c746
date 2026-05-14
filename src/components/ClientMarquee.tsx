@@ -41,7 +41,7 @@ export function ClientMarquee({ heading }: { heading: string }) {
               <img
                 src={l.src}
                 alt={l.alt}
-                className="max-h-16 max-w-full object-contain"
+                className={`${l.sizeClass} max-w-full object-contain`}
                 loading="lazy"
               />
             </div>
