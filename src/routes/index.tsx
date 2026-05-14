@@ -8,6 +8,7 @@ import {
 import { Testimonials } from "@/components/Testimonials";
 import { HeroParticles } from "@/components/HeroParticles";
 import { WorkersChart } from "@/components/WorkersChart";
+import { ClientMarquee } from "@/components/ClientMarquee";
 import { useI18n } from "@/lib/i18n";
 import heroImg from "@/assets/hero-workers.jpg";
 import welderImg from "@/assets/worker-welder.jpg";
