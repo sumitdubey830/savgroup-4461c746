@@ -111,7 +111,10 @@ function Home() {
         </div>
       </section>
 
+      <ClientMarquee heading="Trusted by Leading Russian Companies" />
+
       {/* ABOUT */}
+
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
           <div className="relative">
