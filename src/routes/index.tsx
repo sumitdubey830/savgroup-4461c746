@@ -114,11 +114,7 @@ function Home() {
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
           <div className="relative">
-            <img src={teamImg} alt="Sav Group worker team" className="rounded-2xl shadow-elegant w-full h-[520px] object-cover" loading="lazy" width={1024} height={1024} />
-            <div className="absolute -bottom-8 -right-4 sm:-right-8 bg-gold text-navy p-6 rounded-xl shadow-gold max-w-[220px]">
-              <div className="text-4xl font-display font-bold">2000+</div>
-              <div className="text-sm font-medium mt-1">{t("about.badge")}</div>
-            </div>
+            <WorkersChart label={t("about.badge")} />
           </div>
           <div>
             <span className="text-gold text-sm uppercase tracking-[0.3em] font-semibold">{t("about.eyebrow")}</span>
