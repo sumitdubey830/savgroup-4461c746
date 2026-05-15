@@ -140,21 +140,21 @@ function Home() {
       </section>
 
       {/* SERVICES */}
-      <section className="py-24 bg-secondary">
+      <section className="py-24 bg-navy">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-gold text-sm uppercase tracking-[0.3em] font-semibold">{t("services.eyebrow")}</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-navy mt-3">{t("services.title")}</h2>
-            <p className="text-muted-foreground mt-4">{t("services.subtitle")}</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-primary-foreground mt-3">{t("services.title")}</h2>
+            <p className="text-primary-foreground/70 mt-4">{t("services.subtitle")}</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((s) => (
-              <div key={s.t} className="group bg-background p-8 rounded-xl border border-border hover:border-gold hover:shadow-elegant transition-all">
-                <div className="w-14 h-14 rounded-lg bg-navy flex items-center justify-center mb-5 group-hover:bg-gradient-gold transition-all">
+              <div key={s.t} className="group bg-[#060f21] p-8 rounded-xl border border-primary-foreground/10 hover:border-gold hover:shadow-elegant transition-all">
+                <div className="w-14 h-14 rounded-lg bg-navy-light flex items-center justify-center mb-5 group-hover:bg-gradient-gold transition-all">
                   <s.icon className="w-6 h-6 text-gold group-hover:text-navy transition-colors" />
                 </div>
-                <h3 className="text-xl font-bold text-navy mb-2">{s.t}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{s.d}</p>
+                <h3 className="text-xl font-bold text-primary-foreground mb-2">{s.t}</h3>
+                <p className="text-sm text-primary-foreground/70 leading-relaxed">{s.d}</p>
               </div>
             ))}
           </div>
@@ -162,22 +162,22 @@ function Home() {
       </section>
 
       {/* WORKERS */}
-      <section className="py-24 bg-background relative overflow-hidden">
+      <section className="py-24 bg-[#060f21] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-4 lg:sticky lg:top-28">
               <span className="text-gold text-sm uppercase tracking-[0.3em] font-semibold">{t("workers.eyebrow")}</span>
-              <h2 className="text-4xl md:text-5xl font-bold text-navy mt-3 mb-5">{t("workers.title")}</h2>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                {t("workers.desc.pre")} <strong className="text-navy">{t("workers.desc.strong")}</strong> {t("workers.desc.post")}
+              <h2 className="text-4xl md:text-5xl font-bold text-primary-foreground mt-3 mb-5">{t("workers.title")}</h2>
+              <p className="text-primary-foreground/70 leading-relaxed mb-6">
+                {t("workers.desc.pre")} <strong className="text-gold">{t("workers.desc.strong")}</strong> {t("workers.desc.post")}
               </p>
               <img src={welderImg} alt="Indian welder at work" className="rounded-xl w-full h-64 object-cover shadow-elegant" loading="lazy" width={1024} height={1024} />
             </div>
             <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
               {workers.map((w) => (
-                <div key={w.label} className="group bg-secondary border border-border hover:bg-navy hover:border-navy p-6 rounded-xl text-center transition-all cursor-default">
-                  <w.icon className="w-8 h-8 mx-auto text-navy group-hover:text-gold transition-colors" />
-                  <div className="mt-3 font-semibold text-navy group-hover:text-primary-foreground transition-colors">{w.label}</div>
+                <div key={w.label} className="group bg-navy border border-primary-foreground/10 hover:bg-navy-light hover:border-gold p-6 rounded-xl text-center transition-all cursor-default">
+                  <w.icon className="w-8 h-8 mx-auto text-gold transition-colors" />
+                  <div className="mt-3 font-semibold text-primary-foreground transition-colors">{w.label}</div>
                 </div>
               ))}
             </div>
@@ -186,20 +186,20 @@ function Home() {
       </section>
 
       {/* WHY */}
-      <section className="py-24 bg-secondary">
+      <section className="py-24 bg-navy">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-gold text-sm uppercase tracking-[0.3em] font-semibold">{t("why.eyebrow")}</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-navy mt-3">{t("why.title")}</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-primary-foreground mt-3">{t("why.title")}</h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {reasons.map((r, i) => {
-              const dark = i === 0 || i === 4;
+              const accent = i === 0 || i === 4;
               return (
-                <div key={r.t} className={`p-8 rounded-xl ${dark ? "bg-navy text-primary-foreground" : "bg-background border border-border"} hover:shadow-elegant transition-all`}>
-                  <r.icon className={`w-10 h-10 ${dark ? "text-gold" : "text-navy"} mb-4`} />
-                  <h3 className={`text-xl font-bold mb-2 ${dark ? "text-primary-foreground" : "text-navy"}`}>{r.t}</h3>
-                  <p className={`text-sm leading-relaxed ${dark ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{r.d}</p>
+                <div key={r.t} className={`p-8 rounded-xl ${accent ? "bg-gradient-to-br from-gold/20 to-navy-light border border-gold/40" : "bg-[#060f21] border border-primary-foreground/10"} hover:shadow-elegant transition-all`}>
+                  <r.icon className="w-10 h-10 text-gold mb-4" />
+                  <h3 className="text-xl font-bold mb-2 text-primary-foreground">{r.t}</h3>
+                  <p className="text-sm leading-relaxed text-primary-foreground/70">{r.d}</p>
                 </div>
               );
             })}
@@ -210,19 +210,19 @@ function Home() {
       <Testimonials />
 
       {/* PROCESS */}
-      <section className="py-24 bg-background">
+      <section className="py-24 bg-[#060f21]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-gold text-sm uppercase tracking-[0.3em] font-semibold">{t("proc.eyebrow")}</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-navy mt-3">{t("proc.title")}</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-primary-foreground mt-3">{t("proc.title")}</h2>
           </div>
           <div className="grid md:grid-cols-4 gap-6">
             {steps.map((s, i) => (
               <div key={s.n} className="relative">
-                <div className="bg-secondary p-8 rounded-xl h-full border border-border hover:border-gold transition-colors">
-                  <div className="text-5xl font-display font-bold text-gold/40 mb-4">{s.n}</div>
-                  <h3 className="text-lg font-bold text-navy mb-2">{s.t}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{s.d}</p>
+                <div className="bg-navy p-8 rounded-xl h-full border border-primary-foreground/10 hover:border-gold transition-colors">
+                  <div className="text-5xl font-display font-bold text-gold/60 mb-4">{s.n}</div>
+                  <h3 className="text-lg font-bold text-primary-foreground mb-2">{s.t}</h3>
+                  <p className="text-sm text-primary-foreground/70 leading-relaxed">{s.d}</p>
                 </div>
                 {i < steps.length - 1 && (
                   <ArrowRight className="hidden md:block absolute top-1/2 -right-4 w-6 h-6 text-gold -translate-y-1/2 z-10" />
