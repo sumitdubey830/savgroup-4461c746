@@ -7,7 +7,7 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact Sav Group — Hire Indian Workers for Russia" },
-      { name: "description", content: "Contact Sav Group to hire Indian workers for Russia. Phone +7 922 875 6002, email savruswork@gmail.com. Response within 24 hours. Заказать рабочую силу из Индии." },
+      { name: "description", content: "Contact Sav Group to hire Indian workers for Russia. Phone +7 922 875 6002, email contact@savgroups.com. Response within 24 hours. Заказать рабочую силу из Индии." },
       { name: "keywords", content: "hire Indian workers Russia, contact manpower agency Russia, рабочая сила из Индии заказать, Indian workers for Russia contact, India Russia recruitment contact" },
       { property: "og:title", content: "Contact Sav Group — Hire Indian Workers for Russia" },
       { property: "og:description", content: "Request workers from India for your company. We respond within 24 hours." },
@@ -37,7 +37,7 @@ function Contact() {
             <ContactItem icon={User} label={t("cp.person")} value="Ashish Dubey" />
             <ContactItem icon={Phone} label={t("cp.phone")} value="+7 922 875 6002" href="tel:+79228756002" />
             <ContactItem icon={MessageCircle} label={t("cp.whatsapp")} value="+7 922 875 6002" href="https://wa.me/79228756002" highlight />
-            <ContactItem icon={Mail} label={t("cp.email")} value="savruswork@gmail.com" href="mailto:savruswork@gmail.com" />
+            <ContactItem icon={Mail} label={t("cp.email")} value="contact@savgroups.com" href="mailto:contact@savgroups.com" />
             <ContactItem icon={MapPin} label={t("cp.ops")} value={t("cp.ops.value")} />
           </div>
 
