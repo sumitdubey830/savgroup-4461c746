@@ -79,7 +79,7 @@ export const Route = createRootRoute({
             "@type": "ContactPoint",
             telephone: "+7-922-875-6002",
             contactType: "customer service",
-            email: "savruswork@gmail.com",
+            email: "contact@savgroups.com",
             availableLanguage: ["English", "Russian", "Hindi"],
           },
         }),
