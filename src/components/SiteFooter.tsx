@@ -9,7 +9,7 @@ export function SiteFooter() {
   const { t } = useI18n();
   return (
     <footer className="bg-navy text-primary-foreground">
-      <FooterBirds />
+      
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-10">
         <div className="md:col-span-2">
           <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="inline-block mb-4 w-[220px] md:w-[260px]">

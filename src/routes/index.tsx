@@ -74,7 +74,7 @@ function Home() {
     <>
       {/* HERO */}
       <section className="relative min-h-[92vh] flex items-center overflow-hidden bg-navy">
-        <HeroParticles />
+        
         <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(7,19,42,0.45),rgba(6,15,33,0.7))]" />
         <div className="relative max-w-7xl mx-auto px-6 py-24 grid lg:grid-cols-12 gap-10 items-center w-full">
           <div className="lg:col-span-8 text-primary-foreground animate-fade-up">
