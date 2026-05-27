@@ -6,7 +6,6 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { Testimonials } from "@/components/Testimonials";
-import { HeroParticles } from "@/components/HeroParticles";
 import { WorkersChart } from "@/components/WorkersChart";
 import { ClientMarquee } from "@/components/ClientMarquee";
 import { useI18n } from "@/lib/i18n";
