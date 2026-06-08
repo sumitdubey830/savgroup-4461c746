@@ -73,9 +73,17 @@ function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="relative min-h-[92vh] flex items-center overflow-hidden bg-navy">
-        
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(7,19,42,0.45),rgba(6,15,33,0.7))]" />
+      <section className="relative min-h-[92vh] flex items-center overflow-hidden">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/hero-bg.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-black/50" />
         <div className="relative max-w-7xl mx-auto px-6 py-24 grid lg:grid-cols-12 gap-10 items-center w-full">
           <div className="lg:col-span-8 text-primary-foreground animate-fade-up">
             <h1 className="text-5xl md:text-7xl font-bold leading-[1.05] mb-6">
